@@ -1,4 +1,4 @@
-## FunWithJS Lab
+# FunWithJS Lab
 
 [![HTML](https://img.shields.io/badge/html-5-orange.svg?style=flat)](https://developer.mozilla.org/en-US/docs/Web/HTML)
 [![CSS](https://img.shields.io/badge/css-3-blue.svg?style=flat)](https://developer.mozilla.org/en-US/docs/Web/CSS)
@@ -6,7 +6,7 @@
 
 ---
 
-#### 30 Days of Code: A Beginner's Guide to Web Development
+#### 30 Days of Code: A JavaScript Labs for Beginners
 
 Welcome to the 30 Days of Code challenge! This repository is designed to help you learn the fundamentals of web development by building a new project each day.
 
