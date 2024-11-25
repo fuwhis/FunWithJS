@@ -34,7 +34,7 @@ button:hover {
 
 .modal {
   position: absolute;
-  /* display: none; */
+  display: none;
   justify-content: center;
   align-items: center;
 }
