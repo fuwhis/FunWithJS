@@ -35,7 +35,7 @@ Color Flipper is a simple, fun web application that allows users to change the b
 1. Clone the repository:
 
 ```bash
-git clone https://github.com/fuwhis/color-flipper.git
+git clone https://github.com/fuwhis/FunWithJS.git
 ```
 
 2. Navigate to the project folder:
