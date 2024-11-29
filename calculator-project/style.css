@@ -43,7 +43,7 @@ body {
   width: 100%;
   background: #2c3e50;
   font-size: 32px;
-  text-align: center;
+  text-align: left;
   border-radius: 20px;
   line-height: 100px;
   padding: 0 10px;
@@ -76,7 +76,7 @@ body {
 }
 
 .number-div {
-  padding: 30px 20px;
+  padding: 30px 15px;
   margin: auto;
   width: 100%;
   display: flex;
@@ -91,7 +91,7 @@ body {
   width: 20px;
   border-radius: 50%;
   background: #444;
-  margin: 15px 1px;
+  margin: 15px 2px;
   text-align: center;
   line-height: 65px;
   font-weight: bold;
@@ -103,4 +103,8 @@ body {
 
 .number-div li:hover {
   border: 2px solid deeppink;
+}
+
+.number-div .math {
+  background-color: darkgrey;
 }
