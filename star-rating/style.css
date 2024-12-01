@@ -60,51 +60,51 @@ body {
 
 input:not(:checked) ~ label:hover,
 input:not(:checked) ~ label:hover ~ label {
-    color: rgb(254, 217, 49);
+  color: rgb(254, 217, 49);
 }
 
 input:checked ~ label {
-    color: rgb(254, 217, 49);
+  color: rgb(254, 217, 49);
 }
 
 #rate-1:checked ~ form header:before {
-    content: "I hate it";
+  content: "I hate it";
 }
 
 #rate-2:checked ~ form header:before {
-    content: "I don't like it";
+  content: "I don't like it";
 }
 
 #rate-3:checked ~ form header:before {
-    content: "It's an average";
+  content: "It's an average";
 }
 #rate-4:checked ~ form header:before {
-    content: "I like it";
+  content: "I like it";
 }
 #rate-5:checked ~ form header:before {
-    content: "I love it";
+  content: "I love it";
 }
 
 .wrapper form {
-    display: none;
+  display: none;
 }
 
 input:checked ~ form {
-    display: block;
+  display: block;
 }
 
 form header {
-    width: 100%;
-    font-size: 25px;
-    color: #f3df48;
-    font-weight: 500;
-    margin: 5px 0px 20px 0px;
-    text-align: center;
-    transition: all 0.2s ease;
+  width: 100%;
+  font-size: 25px;
+  color: #f3df48;
+  font-weight: 500;
+  margin: 5px 0px 20px 0px;
+  text-align: center;
+  transition: all 0.2s ease;
 }
 
 form .btn button {
-    padding: 10px 40px;
-    text-transform: uppercase;
-    cursor: pointer;
+  padding: 10px 40px;
+  text-transform: uppercase;
+  cursor: pointer;
 }
