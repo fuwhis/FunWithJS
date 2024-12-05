@@ -12,7 +12,7 @@ body {
 .container {
   text-align: center;
   background: #fff;
-  padding: 20px;
+  margin: 20px;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
   animation: fadeIn 0.5s ease-in-out;
@@ -29,6 +29,22 @@ body {
 
 h1 {
   color: #333;
+}
+
+.callout {
+  margin-bottom: 15px;
+  padding: 0px 12px;
+}
+
+.callout > p {
+  padding: 20px;
+  background-color: #e7f3fe;
+  border-left: 6px solid #2196F3;
+}
+
+code {
+  font-weight: bold;
+  color: orange;
 }
 
 input {
