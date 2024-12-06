@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hex to Binary Converter</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>Hex to Binary Converter</h1>
+      <div class="callout">
+        <p>
+          A <strong>hexadecimal number</strong> is expressed in the base-16 numeral system.
+          It uses 16 symbols as digits<br> <code>0, 1, 2, 3, 4, 5, 6, 7, 8, 9, A, B, C,
+          D, E, F</code>
+        </p>
+      </div>
+      <input
+        type="text"
+        name="hexInput"
+        id="hexInput"
+        placeholder="Enter Hexadecimal Number"
+        maxlength="1"
+      />
+      <button onclick="convert()">Convert</button>
+      <p id="binaryResult"></p>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>
