@@ -41,8 +41,6 @@ const createNoteDOM = () => {
 }
 
 const saveNote = (event) => {
-  // const noteDiv = event.target.closest(".note"); // find the closest note's data
-  // const noteId = noteDiv.getAttribute("data-note-id");
   const { noteContainer, dataNoteId } = lookUpSelectedNote(event)
 
   const noteTitle = noteContainer.querySelector('input').value
@@ -53,19 +51,47 @@ const saveNote = (event) => {
   }
 
   localStorage.setItem(dataNoteId, JSON.stringify(noteData))
-  console.log('save-note', dataNoteId, JSON.stringify(noteData))
 }
 
 const removeNote = (event) => {
   const { noteContainer, dataNoteId } = lookUpSelectedNote(event)
 
-  console.log('remove note', noteContainer, dataNoteId)
+  // remove item in localStorage
+  if (localStorage.getItem(dataNoteId)) {
+    localStorage.removeItem(dataNoteId)
+  } else {
+    console.warn(`Note with ID ${dataNoteId} not found in localStorage.`)
+  }
+
+  // remove dom elements
+  if (noteContainer) {
+    noteContainer.remove()
+  } else {
+    console.warn(`Note DOM element with ID ${dataNoteId} not found.`)
+  }
 }
 
+/**
+ * Finds the closest parent element with the class 'note' and retrieves its data-note-id.
+ * @params {Event} event - The event triggered by user interface.
+ * @returns {{noteContainer: HTMLElement | null, dataNoteId: string | null}}
+ * An object containing the note container element and its data-note-id.
+ */
 const lookUpSelectedNote = (event) => {
-  // find the closest note's data
   const noteDiv = event.target.closest('.note')
+
+  if (!noteDiv) {
+    console.warn('No parent element with class "note" was found.')
+    return { noteContainer: null, dataNoteId: null }
+  }
+
   const noteId = noteDiv.getAttribute('data-note-id')
+
+  if (!noteId) {
+    console.warn('The element does not have a "data-note-id" attribute.')
+    return { noteContainer: noteDiv, dataNoteId: null }
+  }
+
   return { noteContainer: noteDiv, dataNoteId: noteId }
 }
 
