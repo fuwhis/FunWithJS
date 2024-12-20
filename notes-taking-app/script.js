@@ -69,8 +69,9 @@ const lookUpSelectedNote = (event) => {
   return { noteContainer: noteDiv, dataNoteId: noteId }
 }
 
-const createNoteDOMFromLocal = (noteKey, data) => {
-  const noteId = noteKey
+const createNoteDOMFromLocalStorage = (noteID, data) => {
+  console.log(`params:`, noteID, data)
+  const noteId = noteID
   const noteDiv = document.createElement('div')
   const toolDiv = document.createElement('div')
   const inputTitle = document.createElement('input')
@@ -110,11 +111,11 @@ const createNoteDOMFromLocal = (noteKey, data) => {
 
 const loadNote = () => {
   if (window.localStorage.length !== 0 && window.localStorage !== undefined) {
-    for (const key in localStorage) {
-      const notes = JSON.parse(localStorage.getItem(key))
-      console.log(key, notes)
-      const newNote = createNoteDOMFromLocal(key, notes)
-      return newNote
+    const noteKey = Object.entries(localStorage)
+
+    for ([key, value] of noteKey) {
+      const noteData = JSON.parse(value)
+      createNoteDOMFromLocalStorage(key, noteData)
     }
   }
 }
