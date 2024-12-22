@@ -1,5 +1,19 @@
 const addBtn = document.querySelector('#addBtn')
 const main = document.querySelector('#main')
+const snackBar = document.querySelector('#snackbar')
+
+// Drag-and-drop functions
+let draggedNote = null
+let saveNoteText = 'Saved a note successfully.'
+let removeNoteText = 'Removed the note successfully.'
+
+const showSnackBar = (text, duration) => {
+  snackBar.innerHTML = text || null
+  snackBar.className = 'show'
+  setTimeout(() => {
+    snackBar.className = snackBar.className.replace('show', '')
+  }, duration)
+}
 
 const createNoteDOM = () => {
   const noteId = Math.floor(Math.random() * 100)
@@ -37,7 +51,33 @@ const createNoteDOM = () => {
   noteDiv.appendChild(toolDiv)
   noteDiv.appendChild(textArea)
 
+  noteDiv.addEventListener('dragstart', (e) => handleDragStart(e))
+  noteDiv.addEventListener('dragover', (e) => handleDragOver(e))
+  noteDiv.addEventListener('drop', (e) => handleDrop(e))
+
   main.appendChild(noteDiv)
+}
+
+const handleDragStart = (event) => {
+  console.log(event.target)
+  draggedNote = event.target
+  setTimeout(() => {
+    draggedNote.style.opacity = '0.5' // Visual feedback during drag
+  }, 0)
+}
+
+const handleDragOver = (event) => {
+  event.preventDefault() // Allow dropping
+  const target = event.target.closest('.note')
+  if (target && target !== draggedNote) {
+    main.insertBefore(draggedNote, target.nextSibling)
+  }
+}
+
+const handleDrop = (event) => {
+  event.preventDefault()
+  draggedNote.style.opacity = '1' // Reset visual feedback
+  draggedNote = null // Clear reference
 }
 
 const saveNote = (event) => {
@@ -51,6 +91,7 @@ const saveNote = (event) => {
   }
 
   localStorage.setItem(dataNoteId, JSON.stringify(noteData))
+  showSnackBar(saveNoteText, 3000)
 }
 
 const removeNote = (event) => {
@@ -66,6 +107,7 @@ const removeNote = (event) => {
   // remove dom elements
   if (noteContainer) {
     noteContainer.remove()
+    showSnackBar(removeNoteText, 3000)
   } else {
     console.warn(`Note DOM element with ID ${dataNoteId} not found.`)
   }
@@ -96,7 +138,6 @@ const lookUpSelectedNote = (event) => {
 }
 
 const createNoteDOMFromLocalStorage = (noteID, data) => {
-  console.log(`params:`, noteID, data)
   const noteId = noteID
   const noteDiv = document.createElement('div')
   const toolDiv = document.createElement('div')
