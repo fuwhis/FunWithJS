@@ -55,3 +55,34 @@ Web development is a great way to bring your ideas to life and create interactiv
    ```sh
    git clone [https://github.com/fuwhis/FunWithJS.git](https://github.com/fuwhis/FunWithJS.git)
    ```
+2. **Navigate to the project directory:**
+   ```bash
+   cd notes-taking-app
+   ```
+3. **Open `index.html` in your browser to run the application.**
+
+## Contributing
+Contributions are welcome! Please follow these steps:
+1. Fork the repository.
+   
+2. Create a new branch for your feature:
+   ```bash
+   git checkout -b feature/your-feature-name
+   ```
+3. Commit your changes:
+   ```bash
+   git commit -m "Add your feature description"
+   ```
+4. Push your changes:
+   ```bash
+   git push origin feature/your-feature-name
+   ```
+5. Open a pull request.
+
+## License
+This project is licensed under the [MIT License](LICENSE).
+
+<!-- ## Contact
+For questions or feedback, please contact:
+- **Author**: Fuwhis
+- **Email**: quynguyen.itengineer@gmail.com -->
