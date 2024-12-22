@@ -35,10 +35,10 @@ Welcome to the 30 Days of Code challenge! This repository is designed to help yo
 | 19  | Search Functionality               |
 | 20  | Words Counter                      |
 | 21  | Dynamic Color Changer              |
-| 22  | Box Shadow Generator               |
+| 22  | Notes Taking Application           |
 | 23  | Image Carousel Project             |
 | 24  | Browse Image File Upload           |
-| 25  | Fun with Strings                   |
+| 25  | Vowel Counter Application          |
 | 26  | Money/Cash Calculator              |
 | 27  | Age Calculator                     |
 | 28  | Awesome Finance Deposit Calculator |
