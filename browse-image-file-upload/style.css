@@ -38,6 +38,7 @@ input {
   padding: 8px 20px;
   transition: 0.4s ease;
   cursor: pointer;
+  margin: 10px 0px;
 }
 
 .upload:hover {
