@@ -1,5 +1,69 @@
 const addBtn = document.querySelector('#addBtn')
 const main = document.querySelector('#main')
+const snackBar = document.querySelector('#snackbar')
+
+// Drag-and-drop functions
+let draggedNote = null
+let saveNoteText = 'Saved a note successfully.'
+let removeNoteText = 'Removed the note successfully.'
+
+const dragElement = (note) => {
+  let offsetX = 0
+  let offsetY = 0
+  let isDragging = false
+
+  note.addEventListener('mousedown', (e) => {
+    isDragging = true
+
+    // Calculate the offset between the mouse position and the note's top-left corner
+    offsetX = e.clientX - note.getBoundingClientRect().left
+    offsetY = e.clientY - note.getBoundingClientRect().top
+
+    note.style.position = 'absolute'
+    note.style.zIndex = 1000
+    note.style.cursor = 'grab'
+
+    // Temporarily attach mousemove event to the document for smooth dragging
+    document.addEventListener('mousemove', onMouseMove)
+    document.addEventListener('mouseup', onMouseUp)
+  })
+
+  const onMouseMove = (e) => {
+    if (!isDragging) return
+
+    const mainRect = main.getBoundingClientRect()
+
+    // Constrain movement within the main board
+    const left = Math.min(
+      Math.max(e.clientX - offsetX, mainRect.left),
+      mainRect.right - note.offsetWidth
+    )
+
+    const top = Math.min(
+      Math.max(e.clientY - offsetY, mainRect.top),
+      mainRect.bottom - note.offsetHeight
+    )
+
+    note.style.left = `${left}px`
+    note.style.top = `${top}px`
+  }
+
+  const onMouseUp = () => {
+    isDragging = false
+
+    // Remove temporary event listeners
+    document.removeEventListener('mousemove', onMouseMove)
+    document.removeEventListener('mouseup', onMouseUp)
+  }
+}
+
+const showSnackBar = (text, duration) => {
+  snackBar.innerHTML = text || null
+  snackBar.className = 'show'
+  setTimeout(() => {
+    snackBar.className = snackBar.className.replace('show', '')
+  }, duration)
+}
 
 const createNoteDOM = () => {
   const noteId = Math.floor(Math.random() * 100)
@@ -37,6 +101,13 @@ const createNoteDOM = () => {
   noteDiv.appendChild(toolDiv)
   noteDiv.appendChild(textArea)
 
+  // noteDiv.addEventListener('onmousedown', () => dragMouseDown(noteDiv))
+  // noteDiv.addEventListener('dragover', (e) => handleDragOver(e))
+  // noteDiv.addEventListener('drop', (e) => handleDrop(e))
+
+  // Make the note draggable
+  dragElement(noteDiv)
+
   main.appendChild(noteDiv)
 }
 
@@ -51,6 +122,7 @@ const saveNote = (event) => {
   }
 
   localStorage.setItem(dataNoteId, JSON.stringify(noteData))
+  showSnackBar(saveNoteText, 3000)
 }
 
 const removeNote = (event) => {
@@ -66,6 +138,7 @@ const removeNote = (event) => {
   // remove dom elements
   if (noteContainer) {
     noteContainer.remove()
+    showSnackBar(removeNoteText, 3000)
   } else {
     console.warn(`Note DOM element with ID ${dataNoteId} not found.`)
   }
@@ -96,7 +169,6 @@ const lookUpSelectedNote = (event) => {
 }
 
 const createNoteDOMFromLocalStorage = (noteID, data) => {
-  console.log(`params:`, noteID, data)
   const noteId = noteID
   const noteDiv = document.createElement('div')
   const toolDiv = document.createElement('div')
@@ -131,6 +203,8 @@ const createNoteDOMFromLocalStorage = (noteID, data) => {
 
   noteDiv.appendChild(toolDiv)
   noteDiv.appendChild(textArea)
+
+  dragElement(noteDiv)
 
   main.appendChild(noteDiv)
 }
